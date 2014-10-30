@@ -9,7 +9,7 @@ public class SnakeLogic {
 		}
 		
 		// Œ»Ý‚Ì“ª‚ÌˆÊ’u‚ð tails ‚É’Ç‰Á‚·‚é
-		tails.addFirst(head);
+		tails.addFirst(head.clone());
 		
 		// ’·‚³‚ð‘µ‚¦‚é
 		while (tails.size() > len - 1) {
