@@ -8,11 +8,13 @@ import java.awt.geom.Rectangle2D.Double;
 public class SnakePanel extends JPanel implements ActionListener {
 	
 	public SnakePanel() {
+		logic.setLength(3);
+		logic.setWidth(20);
+		logic.setHeight(20);
+		
 		posX = (640 - logic.getWidth() * cellW) / 2;
 		posY = (480 - logic.getHeight() * cellH) / 2;
 				
-		logic.setLength(3);
-		
 		timer.start();
 	}
 	
@@ -58,6 +60,6 @@ public class SnakePanel extends JPanel implements ActionListener {
 	private int cellW = 16, cellH = 16;
 	private int posX = 0, posY = 0;
 	
-	private Timer timer = new Timer(1000 / 2, this);
+	private Timer timer = new Timer(1000 / 4, this);
 
 }
