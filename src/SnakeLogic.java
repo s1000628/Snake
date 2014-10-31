@@ -2,6 +2,10 @@ import java.util.*;
 
 public class SnakeLogic {
 	
+	public void step() {
+		step(d);
+	}
+	
 	public void step(Direction input) {
 		// 既にゲームオーバーなら何もしない
 		if (gameover) {

@@ -5,9 +5,12 @@ import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.geom.Rectangle2D.Double;
 
-public class SnakePanel extends JPanel implements ActionListener {
+public class SnakePanel extends JPanel implements ActionListener, KeyListener {
 	
 	public SnakePanel() {
+		this.setFocusable(true);
+		this.addKeyListener(this);
+		
 		logic.setLength(3);
 		logic.setWidth(20);
 		logic.setHeight(20);
@@ -52,8 +55,40 @@ public class SnakePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		logic.step(Direction.RIGHT);
+		if (hasInput) {
+			logic.step(input);
+			hasInput = false;
+		} else {
+			logic.step();
+		}
+
 		repaint();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent ev) {
+		int key = ev.getKeyCode();
+		if (key == 39 || key == 68) {
+			hasInput = true;
+			input = Direction.RIGHT;
+		} else if (key == 38 || key == 87) {
+			hasInput = true;
+			input = Direction.UP;
+		} else if (key == 37 || key == 65) {
+			hasInput = true;
+			input = Direction.LEFT;
+		} else if (key == 40 || key == 83) {
+			hasInput = true;
+			input = Direction.DOWN;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent ev) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent ev) {
 	}
 	
 	private SnakeLogic logic = new SnakeLogic();
@@ -61,5 +96,8 @@ public class SnakePanel extends JPanel implements ActionListener {
 	private int posX = 0, posY = 0;
 	
 	private Timer timer = new Timer(1000 / 4, this);
+	
+	boolean hasInput = false;
+	Direction input = Direction.RIGHT;
 
 }
