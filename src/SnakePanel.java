@@ -28,6 +28,9 @@ public class SnakePanel extends JPanel implements ActionListener, KeyListener {
 		
 		g2.setColor(new Color(1.0f, 1.0f, 1.0f));
 		g2.fill(new Rectangle2D.Double(posX, posY, cellW * logic.getWidth(), cellH * logic.getHeight()));
+		
+		Point2D bait = logic.getBait();
+		drawEllipse(g2, bait.x, bait.y, new Color(1.0f, 0.5f, 0.0f));
 
 		Point2D head = logic.getHead();
 		drawRect(g2, head.x, head.y, new Color(1.0f, 0.0f, 0.0f));
@@ -50,6 +53,16 @@ public class SnakePanel extends JPanel implements ActionListener, KeyListener {
 		Color prevCol = g2.getColor();
 		g2.setColor(color);
 		g2.fill(rect);
+		g2.setColor(prevCol);
+	}
+	
+	private void drawEllipse(Graphics2D g2, int x, int y, Color color) {
+		Ellipse2D ellipse = new Ellipse2D.Double(
+				posX + x * cellW, posY + y * cellH, cellW, cellH
+				);
+		Color prevCol = g2.getColor();
+		g2.setColor(color);
+		g2.fill(ellipse);
 		g2.setColor(prevCol);
 	}
 

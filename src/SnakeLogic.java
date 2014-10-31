@@ -2,6 +2,10 @@ import java.util.*;
 
 public class SnakeLogic {
 	
+	public SnakeLogic() {
+		reset();
+	}
+	
 	public void step() {
 		step(d);
 	}
@@ -46,17 +50,21 @@ public class SnakeLogic {
 				break;
 			}
 		}
+		
+		// ÉGÉTÇéÊÇ¡ÇΩÇÁêLÇ—ÇÈ
+		if (!gameover && head.equals(bait)) {
+			++len;
+			setNextBait();
+		}
 	}
 	
 	public void reset() {
-		Random r = new Random();
-		
 		gameover = false;
 		
 		tails.clear();
-		
-		head.x = r.nextInt(w);
-		head.y = r.nextInt(h);
+		head = new Point2D(1, 1);
+		d = Direction.RIGHT;
+		setNextBait();
 	}
 	
 	public int getWidth() {
@@ -82,7 +90,7 @@ public class SnakeLogic {
 	}
 
 	public Point2D getHead() {
-		return head;
+		return head.clone();
 	}
 	
 	public void setHead(Point2D head) {
@@ -109,11 +117,46 @@ public class SnakeLogic {
 		len = length;
 	}
 	
+	public Point2D getBait() {
+		return bait.clone();
+	}
+	
+	public void setBait(Point2D bait) {
+		this.bait = bait.clone();
+	}
+	
+	private void setNextBait() {
+		boolean[][] bodyExists = new boolean[w][h];
+		for (int x = 0; x < w; ++x) {
+			for (int y = 0; y < h; ++y) {
+				bodyExists[x][y] = false;
+			}
+		}
+		if (head.x >= 0 && head.y >= 0 && head.x < w && head.y < h) {
+			bodyExists[head.x][head.y] = true;
+		}
+		for (Point2D tail : tails) {
+			bodyExists[tail.x][tail.y]= true; 
+		}
+		LinkedList<Point2D> spaces = new LinkedList<Point2D>();
+		for (int x = 0; x < w; ++x) {
+			for (int y = 0; y < h; ++y) {
+				if (!bodyExists[x][y]) {
+					spaces.add(new Point2D(x, y));
+				}
+			}
+		}
+		bait = spaces.get(r.nextInt(spaces.size()));
+	}
+	
 	private int w = 16, h = 16;
 	private Point2D head = new Point2D(1, 1);
 	private Direction d = Direction.RIGHT;
 	private LinkedList<Point2D> tails = new LinkedList<Point2D>();
 	private int len = 3;
+	private Point2D bait = new Point2D(14, 14);
 	private boolean gameover = false;
+	
+	private Random r = new Random();
 
 }
