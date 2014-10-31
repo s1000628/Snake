@@ -11,6 +11,22 @@ public class Direction {
 	public static final Direction UP = new Direction(Value.UP);
 	public static final Direction LEFT = new Direction(Value.LEFT);
 	public static final Direction DOWN = new Direction(Value.DOWN);
+
+	public Direction getOpposite() {
+		if (v == Value.RIGHT) {
+			return LEFT;
+		} else if (v == Value.UP) {
+			return DOWN;
+		} else if (v == Value.LEFT) {
+			return RIGHT;
+		} else {
+			return UP;
+		}
+	}
+	
+	public boolean isOppositeOf(Direction rhs) {
+		return rhs.equals(getOpposite());
+	}
 	
 	@Override
 	public String toString() {
