@@ -6,10 +6,17 @@ public class SnakeLogic {
 		reset();
 	}
 	
+	/**
+	 * ゲームを1ステップ進める(操作なし)。
+	 */
 	public void step() {
 		step(d);
 	}
 	
+	/**
+	 * ゲームを1ステップ進める。
+	 * @param input プレイヤーの入力の方向
+	 */
 	public void step(Direction input) {
 		// 既にゲームオーバーなら何もしない
 		if (gameover) {
@@ -58,6 +65,9 @@ public class SnakeLogic {
 		}
 	}
 	
+	/**
+	 * ゲームの状態を初期化する。
+	 */
 	public void reset() {
 		gameover = false;
 		
@@ -67,10 +77,19 @@ public class SnakeLogic {
 		setNextBait();
 	}
 	
+	/**
+	 * フィールドの幅を取得する。
+	 * @return フィールドの幅
+	 */
 	public int getWidth() {
 		return w;
 	}
 	
+	/**
+	 * フィールドの幅を設定する。
+	 * @param width フィールドの幅
+	 * @throws IllegalArgumentException
+	 */
 	public void setWidth(int width) {
 		if (w < 2) {
 			throw new IllegalArgumentException();
@@ -78,10 +97,19 @@ public class SnakeLogic {
 		w = width;
 	}
 	
+	/**
+	 * フィールドの高さを取得する。
+	 * @return フィールドの高さ
+	 */
 	public int getHeight() {
 		return h;
 	}
 	
+	/**
+	 * フィールドの高さを設定する。
+	 * @param height フィールドの高さ
+	 * @throws IllegalArgumentException();
+	 */
 	public void setHeight(int height) {
 		if (h < 2) {
 			throw new IllegalArgumentException();
@@ -89,10 +117,19 @@ public class SnakeLogic {
 		h = height;
 	}
 
+	/**
+	 * ヘビの頭の位置を取得する。
+	 * @return ヘビの頭の位置
+	 */
 	public Point2D getHead() {
 		return head.clone();
 	}
 	
+	/**
+	 * ヘビの頭の位置を設定する。
+	 * @param head ヘビの頭の位置
+	 * @throws IllegalArgumentException
+	 */
 	public void setHead(Point2D head) {
 		if (head.x < 0 || head.y < 0 || head.x >= w || head.y >= h) {
 			throw new IllegalArgumentException();
@@ -100,22 +137,44 @@ public class SnakeLogic {
 		this.head = head.clone();
 	}
 	
+	/**
+	 * ヘビの移動方向を取得する。
+	 * @return ヘビの移動方向
+	 */
 	public Direction getDirection() {
 		return d;
 	}
 	
+	/**
+	 * ヘビの移動方向を設定する。
+	 * @param direction ヘビの移動方向
+	 */
 	public void setDirection(Direction direction) {
 		d = direction;
 	}
 	
+	/**
+	 * ヘビの尾(頭以外)の位置のリストを取得する。
+	 * リストは頭に近い方からの順になっている。
+	 * @return ヘビの尾の位置のリスト
+	 */
 	public List<Point2D> getTails() {
 		return (LinkedList<Point2D>)tails.clone();
 	}
 	
+	/**
+	 * ヘビの頭も含めた全体の長さを取得する。
+	 * @return ヘビの長さ
+	 */
 	public int getLength() {
 		return len;
 	}
 	
+	/**
+	 * ヘビの頭も含めた全体の長さを設定する。
+	 * @param length ヘビの長さ
+	 * @throws IllegalArgumentException
+	 */
 	public void setLength(int length) {
 		if (len < 1) {
 			throw new IllegalArgumentException();
@@ -123,10 +182,19 @@ public class SnakeLogic {
 		len = length;
 	}
 	
+	/**
+	 * エサの位置を取得する。
+	 * @return エサの位置
+	 */
 	public Point2D getBait() {
 		return bait.clone();
 	}
 	
+	/**
+	 * エサの位置を設定する。
+	 * @param bait エサの位置
+	 * @throws IllegalArgumentException
+	 */
 	public void setBait(Point2D bait) {
 		if (bait.x < 0 || bait.y < 0 || bait.x >= w || bait.y >= h) {
 			throw new IllegalArgumentException();

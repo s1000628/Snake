@@ -12,6 +12,10 @@ public class Direction {
 	public static final Direction LEFT = new Direction(Value.LEFT);
 	public static final Direction DOWN = new Direction(Value.DOWN);
 
+	/**
+	 * ”½‘Î‚Ì•ûŒü‚ğæ“¾‚·‚éB
+	 * @return ”½‘Î•ûŒü
+	 */
 	public Direction getOpposite() {
 		if (v == Value.RIGHT) {
 			return LEFT;
@@ -24,6 +28,11 @@ public class Direction {
 		}
 	}
 	
+	/**
+	 * rhs ‚ª”½‘Î‚Ì•ûŒü‚©”Û‚©‚ğ’²‚×‚éB
+	 * @param rhs ’²‚×‚é•ûŒü
+	 * @return rhs ‚ª”½‘Î‚Ì•ûŒü‚©”Û‚©
+	 */
 	public boolean isOppositeOf(Direction rhs) {
 		return rhs.equals(getOpposite());
 	}
