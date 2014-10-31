@@ -24,11 +24,11 @@ public class SnakeLogic {
 		d = input;
 		
 		// Œü‚¢‚Ä‚¢‚é•ûŒü‚É1‚Âi‚Ş
-		if (d == Direction.RIGHT) {
+		if (d.equals(Direction.RIGHT)) {
 			++head.x;
-		} else if (d == Direction.UP) {
+		} else if (d.equals(Direction.UP)) {
 			--head.y;
-		} else if (d == Direction.LEFT) {
+		} else if (d.equals(Direction.LEFT)) {
 			--head.x;
 		} else {
 			++head.y;
