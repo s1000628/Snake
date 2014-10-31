@@ -55,7 +55,7 @@ public class SnakePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (hasInput) {
+		if (hasInput && !input.equals(logic.getDirection().getOpposite())) {
 			logic.step(input);
 			hasInput = false;
 		} else {
