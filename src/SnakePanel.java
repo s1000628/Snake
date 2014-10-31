@@ -95,7 +95,7 @@ public class SnakePanel extends JPanel implements ActionListener, KeyListener {
 	private int cellW = 16, cellH = 16;
 	private int posX = 0, posY = 0;
 	
-	private Timer timer = new Timer(1000 / 4, this);
+	private Timer timer = new Timer(1000 / 6, this);
 	
 	boolean hasInput = false;
 	Direction input = Direction.RIGHT;
