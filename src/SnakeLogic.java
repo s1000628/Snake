@@ -94,6 +94,9 @@ public class SnakeLogic {
 	}
 	
 	public void setHead(Point2D head) {
+		if (head.x < 0 || head.y < 0 || head.x >= w || head.y >= h) {
+			throw new IllegalArgumentException();
+		}
 		this.head = head.clone();
 	}
 	
@@ -114,6 +117,9 @@ public class SnakeLogic {
 	}
 	
 	public void setLength(int length) {
+		if (len < 1) {
+			throw new IllegalArgumentException();
+		}
 		len = length;
 	}
 	
@@ -122,6 +128,9 @@ public class SnakeLogic {
 	}
 	
 	public void setBait(Point2D bait) {
+		if (bait.x < 0 || bait.y < 0 || bait.x >= w || bait.y >= h) {
+			throw new IllegalArgumentException();
+		}
 		this.bait = bait.clone();
 	}
 	
